@@ -1,4 +1,4 @@
-DATABASE_URLversion: "3"
+version: "3"
 services:
   server:
     build:
@@ -8,7 +8,7 @@ services:
     ports:
       - "${SERVER_PORT}:3000"
     environment:
-      POSTGRESQL_URL: "postgres://${POSTGRESQL_USER}:${POSTGRESQL_PASSWORD}@db:5432"
+      DATABASE_URL: "postgres://${POSTGRESQL_USER}:${POSTGRESQL_PASSWORD}@db:5432"
       BCRYPT_SALT: "${BCRYPT_SALT}"
     depends_on:
       - migrate
@@ -20,7 +20,7 @@ services:
     command: npm run db:init
     working_dir: /app/server
     environment:
-      POSTGRESQL_URL: "postgres://${POSTGRESQL_USER}:${POSTGRESQL_PASSWORD}@db:5432"
+      DATABASE_URL: "postgres://${POSTGRESQL_USER}:${POSTGRESQL_PASSWORD}@db:5432"
       BCRYPT_SALT: "${BCRYPT_SALT}"
     depends_on:
       - db
